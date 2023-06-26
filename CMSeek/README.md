@@ -1,0 +1,2 @@
+# sis-seminar
+bez komentara

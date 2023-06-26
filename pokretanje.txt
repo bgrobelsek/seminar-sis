@@ -1,0 +1,1 @@
+python3 CMSeek/cmseek.py -l Projekt/url.txt --follow-redirect -v --batch
