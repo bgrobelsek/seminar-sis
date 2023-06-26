@@ -3,68 +3,68 @@ import os
 import socket
 import dns.resolver
 
-# Get the root project folder path
+# Dohvača putanju do root foldera 
 root_folder_path = os.getcwd()
 
-# Specify the input folder name
+# Specificira ime input foldera
 input_folder_name = 'Projekt/cms_csv'
 
-# Create the input folder path
+# Stvara putanju do input foldera
 input_folder_path = os.path.join(root_folder_path, input_folder_name)
 
-# Specify the output folder name
+# Specificira ime output foldera
 output_folder_name = 'Projekt/IP-DNS'
 
-# Create the output folder path
+# Stvara putanju do output foldera
 output_folder_path = os.path.join(root_folder_path, output_folder_name)
 
-# Create the output folder if it doesn't exist
+# Dohvaća listu svih csv datoteka u input folderu
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
-# Get a list of all CSV files in the input folder
+# Dohvaća listu svih csv datoteka u input folderu
 csv_files = [file for file in os.listdir(input_folder_path) if file.endswith('.csv')]
 
-# Iterate over each CSV file
+# Petlja prolazi kroz svaku CSV datoteku
 for file in csv_files:
-    # Construct the full input file path
+    # Konstruira putanju za input datoteku
     input_file_path = os.path.join(input_folder_path, file)
 
-    # Extract the file name without extension
+    # Izvlači ime datoteke bez ekstenzija
     file_name = os.path.splitext(file)[0]
 
-    # Construct the output file name with the suffix "IPdns"
+    # Konstruira output datoteku sa sufiksom "IPdns"
     output_file_name = file_name + "_IP-dns.csv"
 
-    # Construct the full output file path
+    # Konstruira putanju za output datoteku
     output_file_path = os.path.join(output_folder_path, output_file_name)
 
-    # Open the input CSV file
+    # Otvara input CSV datoteku
     with open(input_file_path, 'r') as csv_file:
-        # Create a CSV reader
+        # Kreira CSV reader
         reader = csv.DictReader(csv_file)
 
-        # Create a list to store the extracted data
+        # Kreira listu za spremanje ekstrahiranih podataka
         data = []
 
-        # Iterate over each row in the CSV
+        # Petlja koja prolazi svakim redom CSV datoteke
         for row in reader:
-            # Check if the 'url' key exists
+            # Provjerava da li 'url' ključ postoji
             if 'url' in row:
-                # Extract the URL from the 'url' column
+                # Izvlači URL iz 'url' stupca
                 url = row['url']
 
-                # Remove the 'https://' prefix from the URL
+                # Uklanja 'https://' prefix sa URL-a
                 if url.startswith('https://'):
                     url = url[8:]
 
-                # Find the IP address for the URL
+                # Pronalazi IP adresu za dobiveni URL
                 try:
                     ip_address = socket.gethostbyname(url)
                 except socket.gaierror:
                     ip_address = "Not Found"
 
-                # Find the NS records for the URL
+                # Pronalazi NS zapise adresu za dobiveni URL
                 try:
                     ns_records = dns.resolver.resolve(url, 'NS')
                     ns_records = [ns.target.to_text() for ns in ns_records]
@@ -74,16 +74,16 @@ for file in csv_files:
                 # Append the data to the list
                 data.append({'URL': url, 'IP Address': ip_address, 'NS Records': ns_records})
 
-    # Create the output CSV file
+    # Kreira izlaznu CSV datoteku
     with open(output_file_path, 'w', newline='') as output_file:
-        # Define the field names for the CSV writer
+        # Definira imena poljua za CSV zapis
         fieldnames = ['URL', 'IP Address', 'NS Records']
 
-        # Create a CSV writer
+        # Kreira CSV zapis
         writer = csv.DictWriter(output_file, fieldnames=fieldnames)
 
-        # Write the header row
+        # Zapis headera
         writer.writeheader()
 
-        # Write the data to the output CSV file
+        # Zapis podatka u izlaznu CSV datoteku
         writer.writerows(data)
