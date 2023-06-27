@@ -1,15 +1,15 @@
 # Prikupljanje podataka o sustavu za upravljanje sadržajem (CMS) sa određenih web stranica 
 
 ## Kratki opis rada
-Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj pojedinoj stranici. Nakon toga one se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. 
+Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj stranici iz datoteke. Nakon toga se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. 
 
-Korištenjem **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/. 
+* **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/ i nakon toga otvara taj folder
 
-Datoteka **ip_dns** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise. 
+* **ip_dns.py** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise i nakon toga otvara taj folder
 
-Na samom kraju **encrypto.py** se koristi da bi sve .csv datoteke eknriptirala koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju.
+* **encrypto.py** se koristi kako bi odabrali folder, sve .csv datoteke unutar foldera se eknriptiraju koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju
 
-Navedene .py datoteke se pokreću preko jednostavnog TKinter sučelja. 
+Navedene .py datoteke, uključujući i CMSeeK se pokreću preko jednostavnog TKinter sučelja. 
 
 ### Rad se sastoji od dvije glavne komponente:
 * CMS alata [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK#requirements-and-compatibility)
@@ -18,7 +18,8 @@ Navedene .py datoteke se pokreću preko jednostavnog TKinter sučelja.
 ## Zahtjevi i kompatibilnost:
 CMSeeK i ovaj projekt su napravljeni koristeći python3 koji će vam trebati za pokretanje ovog alata i kompatibilan je sa sustavima temeljenim na unixu od sada. CMSeeK se oslanja na git za automatsko ažuriranje pa provjerite je li git instaliran na vašem računalu.
 
-## Instalacija i upotreba:
+## Instalacija i uporaba:
+CMSeeK
 * git clone https://github.com/bgrobelsek/seminar-sis.git
 *  cd CMSeek
 * ip/pip3 install -r requirements.txt
@@ -28,6 +29,13 @@ Dodatni python3 moduli za instalaciju:
 * cryptography.fernet
 * dns.resolver (?)
 * PIL
+  
+### Uporaba:
+Nakon instaliranih modula pozicionirajte se unutar root foldera i otvorite iz njega terminal.
+> python3 run.py
+Koristeći sučelje krenite tipku po tipku, čekajujći da se proces vezan uz nju odradi.
+Kada dođete do Enkripto tipke, 
+
 
 
 ## Zaključak:
