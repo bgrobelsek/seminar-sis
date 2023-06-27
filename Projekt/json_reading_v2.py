@@ -13,7 +13,7 @@
 
 
 
-#Modul pomocu kojega citamo i komuniciramo sa OS komponentama.
+# Modul pomocu kojega citamo i komuniciramo sa OS komponentama.
 import os
 # Modul potreban za citanje JSON file-ova
 import json

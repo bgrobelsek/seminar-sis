@@ -54,7 +54,7 @@ for file in csv_files:
                 # Izvlači URL iz 'url' stupca
                 url = row['url']
 
-                # Uklanja 'https://' prefix sa URL-a
+                # Uklanja 'https://' prefiks sa URL-a
                 if url.startswith('https://'):
                     url = url[8:]
 
