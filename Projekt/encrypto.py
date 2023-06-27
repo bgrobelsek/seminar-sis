@@ -75,7 +75,7 @@ def decrypt_files():
 
 # Create the main window
 window = tk.Tk()
-window.title("JSON File Encryption")
+window.title("CSV File Encryption")
 window.geometry("400x400")
 
 image_path = "/home/bruno/Documents/GitHub/seminar-sis/Projekt/wiz.png"  

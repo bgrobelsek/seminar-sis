@@ -21,8 +21,8 @@ def run_CMSeek():
     subprocess.call(['python3', 'CMSeek/cmseek.py', '-l', 'url.txt', '--follow-redirect', '-v', '--batch'])
 
 # Definiranje poziva funkcije koja poziva ********** i nakon poziva otvara folder sa .csv datotekama
-def run_json_reading_v2():
-    subprocess.call(['python3', 'Projekt/json_reading_v2.py'])
+def run_json_csv_sorting():
+    subprocess.call(['python3', 'Projekt/json_csv_sorting'])
     show_output_folder("Projekt/cms_csv")
 
 def run_ip_dns():
@@ -50,18 +50,18 @@ root = tk.Tk()
 root.title("ScriptMe")
 
 # Podešavanje veličine glavnog prozora
-root.geometry("350x300")  
+root.geometry("600x300")  
 
 # Definiranje prve tipke
 btn1 = tk.Button(root, text="Run CMSeek", command=run_CMSeek)
 btn1.pack(pady=10)
 
 # Definiranje druge tipke
-btn2 = tk.Button(root, text="Run json_reading_v2.py", command=run_json_reading_v2)
+btn2 = tk.Button(root, text="Run JSON > CSV", command=run_json_csv_sorting)
 btn2.pack(pady=10)
 
 # Definiranje treće tipke
-btn3 = tk.Button(root, text="Run ip_dns.py", command=run_ip_dns)
+btn3 = tk.Button(root, text="Run IP/DNS", command=run_ip_dns)
 btn3.pack(pady=10)
 
 # Definiranje četvrte tipke
