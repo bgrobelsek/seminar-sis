@@ -3,24 +3,23 @@
 #
 # OPCA NAMJENA PROGRAMA
 #
-# Python kod nakon komentara cita JSON datoteke koje su pronadjene putem CMSeek aplikacije.
-# Sve datoteke koje se nalaze u direktoriju 'Result' biti ce procitane i sortirane te ce program kreirati nove CSV i TXT datoteke.
-# Program cita CMS modul i prema njihovim identifikacijskim oznakama ih sortira, te kreira ili dodaje zapis u CSV datoteke odgovarajuceg modula.
-# Novo kreirane CSV datoteke ce biti pospremljene u novi direktorij nazvan "cms_csv" koji se nalazi u root-u programa.
-# Svaka CSV datoteka ce biti sortirana po odgovarajucem CMS-u (npr. WordPress = wp.csv; Shopify=shopify.csv).
-# Novo kreirane CSV datoteke ce sadrzavati uzglavlje i atribute CMS-ova.
-# U slucaju da ne prepozna trazeni identifikator CMS modula, podatci iz JSON datoteke se zapisuju u "export.csv" i "export.txt" koji se nalazi u "cms_csv" direktoriju.
+# Python code nakon komentara čita JSON datoteke koje su pronađene putem CMSeek aplikacije.
+# Sve datoteke koje se nalaze u direktoriju 'Result' biti će pročitane i sortirane te će program kreirati nove CSV i TXT datoteke.
+# Program čita CMS modul i prema njihovim identifikacijskim oznakama ih sortira, te kreira ili dodaje zapis u CSV datoteke odgovarajućeg modula.
+# Novo kreirane CSV datoteke će biti pospremljene u novi direktorij nazvan "cms_csv" koji se nalazi u root-u programa.
+# Svaka CSV datoteka će biti sortirana po odgovarajućem CMS-u (npr. WordPress = wp.csv; Shopify=shopify.csv).
+# Novo kreirane CSV datoteke će sadržavati uzglavlje i atribute CMS-ova.
+# U slučaju da ne prepozna traženi identifikator CMS modula, podaci iz JSON datoteke se zapisuju u "export.csv" i "export.txt" koji se nalazi u "cms_csv" direktoriju.
 
 
-
-# Modul pomocu kojega citamo i komuniciramo sa OS komponentama.
+#Modul pomoću kojega čitamo i komuniciramo sa OS komponentama.
 import os
-# Modul potreban za citanje JSON file-ova
+# Modul potreban za čitanje JSON file-ova
 import json
-# Modul potreban za citanje CSV file-ova
+# Modul potreban za čitanje CSV file-ova
 import csv
 
-# Funkcija za citanje i spremanje CMS modula u listu, po kategorijama
+# Funkcija za čitanje i spremanje CMS modula u listu, po kategorijama
 def export_data_to_csv_and_txt(directory):
     wp_data = []
     shopify_data = []
@@ -31,9 +30,9 @@ def export_data_to_csv_and_txt(directory):
     drupal_data = []
     other_data = []
 
-# Citanje direktorija koji je zadan parametrom funkcije os.walk(directory) i pokretanje petlje citanja datoteka koje zavrsavaju ekstenzijom .json.
-# Ukoliko takve datoteke postoje, otvaraju se, te se sukladno cms_id-u (koji se nalazi u samoj datoteci) zapisuje u odgovarajucu listu.
-# U slucaju da se ciljana datoteka ne uspije procitati, ispisuje se greska. 
+    # Čitanje direktorija koji je zadan parametrom funkcije os.walk(directory) i pokretanje petlje čitanja datoteka koje završavaju ekstenzijom .json.
+    # Ukoliko takve datoteke postoje, otvaraju se, te se sukladno cms_id-u (koji se nalazi u samoj datoteci) zapisuje u odgovarajuću listu.
+    # U slučaju da se ciljana datoteka ne uspije pročitati, ispisuje se greška.  
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".json"):
@@ -62,7 +61,7 @@ def export_data_to_csv_and_txt(directory):
                         print(f"Error: Failed to decode JSON file '{file_path}'")
 
     # Lokacija za spremanje CMS modula u CSV obliku.
-    # Kreiranje novog direktorija na lokaciji gdje je program pokrenut, ukoliko takav direktorij vec ne postoji.
+    # Kreiranje novog direktorija na lokaciji gdje je program pokrenut, ukoliko takav direktorij već ne postoji.
     output_directory = 'Projekt/cms_csv'
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -151,7 +150,7 @@ def export_data_to_csv_and_txt(directory):
     else:
         create_empty_file(os.path.join(output_directory, 'drupal.csv'))
             
-    # U slucaju da program nije procitao trazeni CMS modul, kreira CSV datoteku "export.csv"
+    # U slučaju da program nije pročitao trazeni CMS modul, kreira CSV i TXT datoteke "export.csv" i "export.txt"
     # i zapisuje podatke iz JSON datoteke
     if other_data:
         csv_file_path = os.path.join(output_directory, 'export.csv')
@@ -169,7 +168,7 @@ def export_data_to_csv_and_txt(directory):
 def create_empty_file(file_path):
     open(file_path, 'a').close()
 
-# Blok koda koji provjerava pokrece li se program samostalno ili ne.
+# Blok koda koji provjerava pokreće li se program samostalno ili ne.
 if __name__ == '__main__':
     directory = 'CMSeek/Result'
 
