@@ -40,7 +40,7 @@ if not os.path.exists(output_folder_path):
 
 # Dohvaćanje liste svih CSV datoteka u ulaznom direktoriju
 csv_files = [file for file in os.listdir(input_folder_path) if file.endswith('.csv')]
-    
+
 # Petlja prolazi kroz svaku CSV datoteku
 for file in csv_files:
     # Konstruiranje putanje za ulaznu datoteku
@@ -55,20 +55,31 @@ for file in csv_files:
     # Konstruiranje putanje za izlaznu datoteku
     output_file_path = os.path.join(output_folder_path, output_file_name)
 
-    # Otvaranje ulazne CSV datoteke
-    with open(input_file_path, 'r') as csv_file:
+    # Otvaranje ulazne CSV datoteke s odgovarajućim kodiranjem
+    with open(input_file_path, 'r', encoding='ISO-8859-1') as csv_file:
         # Kreiranje CSV čitača
         reader = csv.DictReader(csv_file)
 
-        # Kreiranje liste za spremanje izvučenih podataka
-        data = []
+        # Pronalaženje stupca 'url' u poljima CSV datoteke
+        url_field = None
+        fields = reader.fieldnames
+        if 'url' in fields:
+            url_field = 'url'
+        else:
+            for field in fields:
+                if 'url' in field.lower():
+                    url_field = field
+                    break
 
-        # Petlja koja prolazi kroz svaki redak CSV datoteke
-        for row in reader:
-            # Provjera postoji li ključ 'url'
-            if 'url' in row:
-                # Izvlačenje URL-a iz stupca 'url'
-                url = row['url']
+        # Ako je pronađeno polje 'url'
+        if url_field:
+            # Kreiranje liste za spremanje izvučenih podataka
+            data = []
+
+            # Petlja koja prolazi kroz svaki redak CSV datoteke
+            for row in reader:
+                # Izvlačenje URL-a iz odgovarajućeg stupca
+                url = row[url_field]
 
                 # Uklanjanje prefiksa 'https://' iz URL-a
                 if url.startswith('https://'):
@@ -90,16 +101,18 @@ for file in csv_files:
                 # Dodavanje podataka u listu
                 data.append({'URL': url, 'IP adresa': ip_address, 'NS zapisi': ns_records})
 
-    # Kreiranje izlazne CSV datoteke
-    with open(output_file_path, 'w', newline='') as output_file:
-        # Definiranje imena stupaca za CSV pisca
-        fieldnames = ['URL', 'IP adresa', 'NS zapisi']
+            # Kreiranje izlazne CSV datoteke (overwrite existing file)
+            with open(output_file_path, 'w', newline='', encoding='utf-8') as output_file:
+                # Definiranje imena stupaca za CSV pisca
+                fieldnames = ['URL', 'IP adresa', 'NS zapisi']
 
-        # Kreiranje CSV pisca
-        writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+                # Kreiranje CSV zapis
+                writer = csv.DictWriter(output_file, fieldnames=fieldnames)
 
-        # Pisanje zaglavlja u datoteku
-        writer.writeheader()
+                # Pisanje zaglavlja u datoteku
+                writer.writeheader()
 
-        # Pisanje podataka u izlaznu CSV datoteku
-        writer.writerows(data)
+                # Pisanje podataka u izlaznu CSV datoteku
+                writer.writerows(data)
+        else:
+            print(f"Upozorenje: Nije pronađeno polje 'url' u datoteci {file}. Preskačem datoteku.")

@@ -78,7 +78,7 @@ window = tk.Tk()
 window.title("CSV File Encryption")
 window.geometry("400x400")
 
-image_path = "/home/bruno/Documents/GitHub/seminar-sis/Projekt/wiz.png"  
+image_path = "Projekt/wiz.png"  
 if os.path.exists(image_path):
     image = Image.open(image_path)
     image = image.resize((200, 200), Image.ANTIALIAS)
