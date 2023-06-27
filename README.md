@@ -27,9 +27,13 @@ Simulacija ujedno ukazuje na ranjivost i nedovoljnu zaštitu osnovnih postavki v
  
 Uz destruktivan primjer obrađene podatke moguće je koristiti i na pozitivan način u marketinške svrhe nudeći bolje i kvalitetnije usluge hostinga u odnosu na one koje pruža trenutni pružatelj usluga.
 
-**Smjer i vrsta studija:** Održavanje računalnih sustava, izvanredni 
+## Prikupljanje podataka o sustavu za upravljanje sadržajem (CMS) sa određenih web stranica 
 
-**Predmetni nastavnik:** Antun Matija Filipović, v. pred., mag.
+**Smjer i vrsta studija:** 
+Održavanje računalnih sustava, izvanredni 
+
+**Predmetni nastavnik:** 
+Antun Matija Filipović, v. pred., mag.
 
 **Studenti:** 
 - Gabud Mario
