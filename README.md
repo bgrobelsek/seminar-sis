@@ -3,9 +3,9 @@
 ## Kratki opis rada
 Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj stranici iz datoteke. Nakon toga se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. 
 
-* **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/ i nakon toga otvara taj folder
+* **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/. Nakon što je završen proces otvara se taj folder.
 
-* **ip_dns.py** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise i nakon toga otvara taj folder
+* **ip_dns.py** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/. Nakon što je završen proces otvara se taj folder.
 
 * **encrypto.py** se koristi kako bi odabrali folder, sve .csv datoteke unutar foldera se eknriptiraju koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju
 
@@ -33,9 +33,12 @@ Dodatni python3 moduli za instalaciju:
 ### Uporaba:
 Nakon instaliranih modula pozicionirajte se unutar root foldera i otvorite iz njega terminal.
 > python3 run.py
-Koristeći sučelje krenite tipku po tipku, čekajujći da se proces vezan uz nju odradi.
-Kada dođete do Enkripto tipke, 
 
+Koristeći ScriptMe sučelje krenite tipku po tipku, čekajujći da se proces vezan uz nju odradi.
+
+Kada pokrenete Encyrpto preko **Browse** tipke nađite i odaberite folder 'Projekt' i stisnite **Encrypt**. 
+
+Vaše .csv datoteke su enkriptirane!
 
 
 ## Zaključak:
