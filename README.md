@@ -1,7 +1,13 @@
 # Prikupljanje podataka o sustavu za upravljanje sadržajem (CMS) sa određenih web stranica 
 
 ## Kratki opis rada
-Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj pojedinoj stranici. Nakon toga one se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. Korištenjem **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/ . **ip_dns** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise. . Na samom kraju **encrypto.py** se koristi da bi sve .csv datoteke eknriptirala koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju.
+Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj pojedinoj stranici. Nakon toga one se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. 
+
+Korištenjem **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/. 
+
+Datoteka **ip_dns** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise. 
+
+Na samom kraju **encrypto.py** se koristi da bi sve .csv datoteke eknriptirala koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju.
 
 Navedene .py datoteke se pokreću preko jednostavnog TKinter sučelja. 
 
