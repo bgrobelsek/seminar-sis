@@ -2,10 +2,8 @@ import tkinter as tk
 import os
 import subprocess
 
-url_adresses = 'url.txt'
-
 def run_CMSeek():
-    subprocess.call(['python3', 'CMSeek/cmseek.py -l url.txt --follow-redirect -v --batch'])
+    subprocess.call(['python3', 'CMSeek/cmseek.py', '-l', 'url.txt', '--follow-redirect', '-v', '--batch'])
 
 def run_json_reading_v2():
     subprocess.call(['python3', 'Projekt/json_reading_v2.py'])

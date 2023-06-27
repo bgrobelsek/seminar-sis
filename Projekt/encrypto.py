@@ -25,7 +25,7 @@ def decrypt_file(file_path, key):
     with open(file_path, 'rb') as file:
         encrypted_data = file.read()
     fernet = Fernet(key)
-    decrypted_data = fernet.decrypt(encrypted_data)
+    decrypted_data = fernet.decrypt(encrypted_data)         
     with open(file_path, 'wb') as file:
         file.write(decrypted_data)
 
@@ -78,7 +78,7 @@ window = tk.Tk()
 window.title("JSON File Encryption")
 window.geometry("400x400")
 
-image_path = "/home/bruno/Documents/GitHub/encrypto/wiz.png"  
+image_path = "/home/bruno/Documents/GitHub/seminar-sis/Projekt/wiz.png"  
 if os.path.exists(image_path):
     image = Image.open(image_path)
     image = image.resize((200, 200), Image.ANTIALIAS)
