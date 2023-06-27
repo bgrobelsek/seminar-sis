@@ -1,13 +1,18 @@
 # Prikupljanje podataka o sustavu za upravljanje sadržajem (CMS) sa određenih web stranica 
 
-Ovaj rad se sastoji od dvije glavne komponente:
+## Kratki opis rada
+Korištenjem besplatnog CMS alata CMSeeK iz deset prethodno upisanih web stranica koje se nalaze u url.txt datoteci dohvaćaju se informacije o svakoj pojedinoj stranici. Nakon toga one se zapišu u json datoteku koja nosi isti naziv stranice. Informacije su raznolikog karaktera poput url-a, cms_id-a, wordpress licence itd. Korištenjem **json_reading_v2.py** json datoteke se pretvaraju u CSV datoteke i sortiraju po CMS-u u nove foldere čiji root folder je /cms_csv/ . **ip_dns** čita zapise u /cms_csv/, izvlači URL adrese, pronalazi IP adresu i NS zapise i to zapisuje u mapu /IP-DNS/ kao nove cms zapise. . Na samom kraju **encrypto.py** se koristi da bi sve .csv datoteke eknriptirala koristeći Fernet ključ - preko tog istog ključa se navedene datoteke i dekriptiraju.
+
+Navedene .py datoteke se pokreću preko jednostavnog TKinter sučelja. 
+
+### Rad se sastoji od dvije glavne komponente:
 * CMS alata [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK#requirements-and-compatibility)
 * Projekta koji sadrži ostale komponente i datoteke na kojima su radili studenti
 
 ## Zahtjevi i kompatibilnost:
 CMSeeK i ovaj projekt su napravljeni koristeći python3 koji će vam trebati za pokretanje ovog alata i kompatibilan je sa sustavima temeljenim na unixu od sada. CMSeeK se oslanja na git za automatsko ažuriranje pa provjerite je li git instaliran na vašem računalu.
 
-## Instalacija i upotreba [u terminalu]:
+## Instalacija i upotreba:
 * git clone https://github.com/bgrobelsek/seminar-sis.git
 *  cd CMSeek
 * ip/pip3 install -r requirements.txt

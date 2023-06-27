@@ -71,7 +71,7 @@ for file in csv_files:
                 except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN, dns.exception.DNSException):
                     ns_records = "Not Found"
 
-                # Append the data to the list
+                # Dodavanje podataka u listu
                 data.append({'URL': url, 'IP Address': ip_address, 'NS Records': ns_records})
 
     # Kreira izlaznu CSV datoteku
