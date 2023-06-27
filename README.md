@@ -2,21 +2,21 @@
 
 Ovaj rad se sastoji od dvije glavne komponente:
 * CMS alata [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK#requirements-and-compatibility)
-* Projekta koji sadrži ostale komponente i datoteke
+* Projekta koji sadrži ostale komponente i datoteke na kojima su radili studenti
 
 ## Zahtjevi i kompatibilnost:
-CMSeeK i ovaj projekt su napravljeni koristeći python3, koji će vam trebati za pokretanje ovog alata i kompatibilan je sa sustavima temeljenim na unixu od sada. CMSeeK se oslanja na git za automatsko ažuriranje pa provjerite je li git instaliran na vašem računalu.
+CMSeeK i ovaj projekt su napravljeni koristeći python3 koji će vam trebati za pokretanje ovog alata i kompatibilan je sa sustavima temeljenim na unixu od sada. CMSeeK se oslanja na git za automatsko ažuriranje pa provjerite je li git instaliran na vašem računalu.
 
 ## Instalacija i upotreba [u terminalu]:
-- git clone https://github.com/bgrobelsek/seminar-sis.git
+* git clone https://github.com/bgrobelsek/seminar-sis.git
 *  cd CMSeek
 * ip/pip3 install -r requirements.txt
   
 Dodatni python3 moduli za instalaciju:
-- fernet 
+* fernet 
 * cryptography.fernet
 * dns.resolver (?)
-+ PIL
+* PIL
 
 
 ## Zaključak:
@@ -36,7 +36,7 @@ Održavanje računalnih sustava, izvanredni
 Antun Matija Filipović, v. pred., mag.
 
 **Studenti:** 
-- Gabud Mario
+* Gabud Mario
 * Babuder Ivan
 * Blažić Marin
 * Grobelšek Bruno
@@ -49,5 +49,5 @@ Antun Matija Filipović, v. pred., mag.
 * Mezga Alen
 * Žanić Ivan
 * Borozan Vedran
-+ Ivošević-Podjed Kristijan
+* Ivošević-Podjed Kristijan
    
