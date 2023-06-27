@@ -40,6 +40,8 @@ Kada pokrenete Encyrpto preko **Browse** tipke nađite i odaberite folder 'Proje
 
 Vaše .csv datoteke su enkriptirane!
 
+p.s. nemojte zaboraviti obrisati trag koristeći **DELETE EVERYTHING** tipku ;)
+
 ![TKinter](Projekt/Screenshots/scriptme.png)
 
 ![Encrypto](Projekt/Screenshots/encrypto.png)

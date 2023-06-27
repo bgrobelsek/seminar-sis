@@ -8,6 +8,8 @@ import tkinter as tk
 import os
 # Importiranje modula za subprocese
 import subprocess
+# Importiranje modula za poruke
+from tkinter import messagebox
 
 
 # Definiranje poziva funkcije run_CMSeek iz CMSeek foldera
@@ -44,6 +46,19 @@ def show_output_folder(folder_name):
     elif os.name == "posix":  # Linux or macOS
         subprocess.Popen(['xdg-open', output_folder])
 
+# Definiramo koji su nam folderi bitni za brisanje
+directory_paths = ['Projekt/cms_csv', 'Projekt/IP-DNS']
+
+# Brisanje svih datoteka unutar gorenavedenih foldera 
+def delete_evidence():
+    for directory_path in directory_paths:
+            print(f"Deleting files in: {directory_path}")
+            for filename in os.listdir(directory_path):
+                file_path = os.path.join(directory_path, filename)
+                if os.path.isfile(file_path):
+                    subprocess.run(['rm', file_path])
+                    print(f"Deleted file: {file_path}")
+    messagebox.showinfo("Deletion Complete", "Nothing ever happened ;)")
 
 # Ovo je TKinter sučelje
 root = tk.Tk()
@@ -53,7 +68,7 @@ root.title("ScriptMe")
 root.geometry("600x300")  
 
 # Definiranje prve tipke
-btn1 = tk.Button(root, text="Run CMSeek", command=run_CMSeek)
+btn1 = tk.Button(root, text="Run CMSeek", fg='white', bg='green', command=run_CMSeek)
 btn1.pack(pady=10)
 
 # Definiranje druge tipke
@@ -65,11 +80,15 @@ btn3 = tk.Button(root, text="Run IP/DNS", command=run_ip_dns)
 btn3.pack(pady=10)
 
 # Definiranje četvrte tipke
-btn4 = tk.Button(root, text="Call Encrypto", command=run_call_encrypto)
+btn4 = tk.Button(root, text="Call Encrypto", fg='white', bg='blue', command=run_call_encrypto)
 btn4.pack(pady=10)
 
 # Definiranje labele koja će nam pokazati koji je izlazni folder
 result_label = tk.Label(root, text="Output folder: ")
-result_label.pack(pady=10)
+result_label.pack(pady=15)
+
+# Brisanje svih stavki unutar cms_csv i IP-DNS foldera
+btn4 = tk.Button(root, text="DELETE EVIDENCE", fg='white', bg='red', command=delete_evidence)
+btn4.pack(pady=10)
 
 root.mainloop()
