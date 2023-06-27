@@ -21,7 +21,7 @@ CMSeeK i ovaj projekt su napravljeni koristeći python3 koji će vam trebati za 
 ## Instalacija i uporaba:
 CMSeeK
 * git clone https://github.com/bgrobelsek/seminar-sis.git
-*  cd CMSeek
+* cd CMSeek
 * ip/pip3 install -r requirements.txt
   
 Dodatni python3 moduli za instalaciju:
@@ -39,6 +39,8 @@ Koristeći ScriptMe sučelje krenite tipku po tipku, čekajujći da se proces ve
 Kada pokrenete Encyrpto preko **Browse** tipke nađite i odaberite folder 'Projekt' i stisnite **Encrypt**. 
 
 Vaše .csv datoteke su enkriptirane!
+
+
 
 
 ## Zaključak:
