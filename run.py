@@ -22,7 +22,7 @@ def run_CMSeek():
 
 # Definiranje poziva funkcije koja poziva ********** i nakon poziva otvara folder sa .csv datotekama
 def run_json_csv_sorting():
-    subprocess.call(['python3', 'Projekt/json_csv_sorting'])
+    subprocess.call(['python3', 'Projekt/json_csv_sorting.py'])
     show_output_folder("Projekt/cms_csv")
 
 def run_ip_dns():
