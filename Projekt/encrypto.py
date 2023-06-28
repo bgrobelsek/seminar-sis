@@ -1,6 +1,7 @@
 # encyrpto.py je jednostavna mala python aplikacija koja ima osnovno GUI sučelje i koja koristi
 # fernet enkripcijski ključ za enkripciju i dekripciju isključivo CSV datoteka unutar foldera
 
+################################################################################################
 
 # Modul za rad s putanjama i direktorijima
 import os 
