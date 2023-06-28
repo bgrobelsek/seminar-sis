@@ -12,13 +12,6 @@ import os  # Modul za rad s putanjama i direktorijima
 import socket  # Modul za rad s mrežnim operacijama
 import dns.resolver  # Modul za rad s DNS upitima
 
-
-# Specificiranje imena ulaznog direktorija
-import csv
-import os
-import socket
-import dns.resolver
-
 # Dohvaćanje putanje do korijenskog direktorija
 root_folder_path = os.getcwd()
 
@@ -31,7 +24,7 @@ input_folder_path = os.path.join(root_folder_path, input_folder_name)
 # Specificiranje imena izlaznog direktorija
 output_folder_name = 'Projekt/IP-DNS'
 
-# Stvara putanju do output foldera
+# Kreiranje putanje do izlaznog direktorija
 output_folder_path = os.path.join(root_folder_path, output_folder_name)
 
 # Kreiranje izlaznog direktorija ako ne postoji
@@ -85,6 +78,10 @@ for file in csv_files:
                 if url.startswith('https://'):
                     url = url[8:]
 
+                # Uklanjanje prefiksa 'www.' iz URL-a
+                if url.startswith('www.'):
+                    url = url[4:]
+
                 # Pronalaženje IP adrese za dobiveni URL
                 try:
                     ip_address = socket.gethostbyname(url)
@@ -106,7 +103,7 @@ for file in csv_files:
                 # Definiranje imena stupaca za CSV pisca
                 fieldnames = ['URL', 'IP adresa', 'NS zapisi']
 
-                # Kreiranje CSV zapis
+                # Kreiranje CSV zapisa
                 writer = csv.DictWriter(output_file, fieldnames=fieldnames)
 
                 # Pisanje zaglavlja u datoteku
