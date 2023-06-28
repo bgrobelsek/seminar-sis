@@ -27,14 +27,19 @@ CMSeeK
 Dodatni python3 moduli za instalaciju:
 * fernet 
 * cryptography.fernet
-* dns.resolver (?)
+* dns.resolver 
 * PIL
+
   
 ### Uporaba:
 Nakon instaliranih modula pozicionirajte se unutar root foldera i otvorite iz njega terminal.
 > python3 run.py
 
-Koristeći ScriptMe sučelje krenite tipku po tipku, čekajujći da se proces vezan uz nju odradi.
+Koristeći ScriptMe sučelje krenite s aktivacijom svakog progama tipku po tipku.
+
+CMSeeK će prikazati svoj rad i završetak istog kroz terminal.
+
+JSON/SORT i IP_DNS kada se završe otvoriti će foldere u kojima su prebacili .csv datoteke.
 
 Kada pokrenete Encyrpto preko **Browse** tipke nađite i odaberite folder 'Projekt' i stisnite **Encrypt**. 
 

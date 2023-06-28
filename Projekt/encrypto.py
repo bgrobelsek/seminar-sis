@@ -1,18 +1,32 @@
-import os
-from cryptography.fernet import Fernet
+# encyrpto.py je jednostavna mala python aplikacija koja ima osnovno GUI sučelje i koja koristi
+# fernet enkripcijski ključ za enkripciju i dekripciju isključivo CSV datoteka unutar foldera
+
+
+# Modul za rad s putanjama i direktorijima
+import os 
+# Modul za generaciju enkripcijskog ključa
+from cryptography.fernet import Fernet 
+# Modul za GUI
 import tkinter as tk
+# Dodatni moduli iz GUI modula
 from tkinter import filedialog, messagebox
+# Modul PIL
 from PIL import ImageTk, Image
 
+# Definira se root folder kroz kojeg će proći petlja koja nalazi .csv datoteke i 
+# stavlja ih u csv_files 
 def find_json_files(main_folder):
-    json_files = []
+    csv_files = []
     for root, dirs, files in os.walk(main_folder):
         for file_name in files:
             if file_name.endswith('.csv'):
-                json_files.append(os.path.join(root, file_name))
-    return json_files
+                csv_files.append(os.path.join(root, file_name))
+    return csv_files
 
-# ovde se uzme ključ i otključa 
+# Generiranje ključa za enkriptiranje i dekriptiranje
+key = Fernet.generate_key()
+
+# Funkcija za enkripciju jedne json datoteke koristeći Fernet ključ
 def encrypt_file(file_path, key):
     with open(file_path, 'rb') as file:
         data = file.read()
@@ -21,6 +35,7 @@ def encrypt_file(file_path, key):
     with open(file_path, 'wb') as file:
         file.write(encrypted_data)
 
+# Funkcija za dekripciju jedne json datoteke koristeći Fernet ključ
 def decrypt_file(file_path, key):
     with open(file_path, 'rb') as file:
         encrypted_data = file.read()
@@ -29,55 +44,65 @@ def decrypt_file(file_path, key):
     with open(file_path, 'wb') as file:
         file.write(decrypted_data)
 
+# funkcija koja bilježi odabir foldera iz TKinter sučelja
 def select_folder():
     folder_path = filedialog.askdirectory()
     if folder_path:
         folder_entry.delete(0, tk.END)
         folder_entry.insert(tk.END, folder_path)
 
-# generacija ključa za enkriptiranje i dekriptiranje
-key = Fernet.generate_key()
 
+# Funkcija koja pokreće enkripciju svake json datoteke unutar odabranog foldera
 def encrypt_files():
     main_folder = folder_entry.get()
     if not main_folder:
         messagebox.showwarning("Folder Not Selected", "Please select a folder.")
         return
 
-    json_files = find_json_files(main_folder)
+    # Pozivanje funkcije find_jason_files koju smo gore definirali 
+    csv_files = find_json_files(main_folder)
 
-    if not json_files:
+    # ako funkcija ne nađe niti jednu .csv datoteku obavjestiti će korisnika porukom
+    if not csv_files:
         messagebox.showinfo("No .CSV Files", "No .CSV files found in the selected folder.")
         return
 
-    for file_path in json_files:
+    # for petlja koja proalzi kroz json datoteke    
+    for file_path in csv_files:
         encrypt_file(file_path, key)
 
+    # poruka koja iskače ako je enkripcija izvršena 
     messagebox.showinfo("Encryption Complete", ".CSV files encrypted successfully.")
 
+# Funkcija koja pokreće dekripciju svake json datoteke unutar odabranog foldera
 def decrypt_files():
     main_folder = folder_entry.get()
     if not main_folder:
         messagebox.showwarning("Folder Not Selected", "Please select a folder.")
         return
+    
+    # Pozivanje funkcije find_jason_files koju smo gore definirali 
+    csv_files = find_json_files(main_folder)
 
-    # key = Fernet.generate_key()
-    json_files = find_json_files(main_folder)
-
-    if not json_files:
+    # ako funkcija ne nađe niti jednu .csv datoteku obavjestiti će korisnika porukom
+    if not csv_files:
         messagebox.showinfo("No .CSV Files", "No .CSV files found in the selected folder.")
         return
-
-    for file_path in json_files:
+    
+    # for petlja koja proalzi kroz json datoteke  
+    for file_path in csv_files:
         decrypt_file(file_path, key)
 
+    # poruka koja iskače ako je dekripcija izvršena
     messagebox.showinfo("Decryption Complete", ".CSV files decrypted successfully.")
 
-# Create the main window
+
+# Kreacija glavnog prozora 
 window = tk.Tk()
 window.title("CSV File Encryption")
 window.geometry("400x400")
 
+# Slika čarobnjaka zajedno sa relativnim path-om, u slučaju da se ne nađe slika izlazi error "Image not found."
 image_path = "Projekt/wiz.png"  
 if os.path.exists(image_path):
     image = Image.open(image_path)

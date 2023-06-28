@@ -12,13 +12,6 @@ import os  # Modul za rad s putanjama i direktorijima
 import socket  # Modul za rad s mrežnim operacijama
 import dns.resolver  # Modul za rad s DNS upitima
 
-
-# Specificiranje imena ulaznog direktorija
-import csv
-import os
-import socket
-import dns.resolver
-
 # Dohvaćanje putanje do korijenskog direktorija
 root_folder_path = os.getcwd()
 
